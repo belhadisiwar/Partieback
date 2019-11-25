@@ -5,63 +5,30 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
-public class Admin implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	 @Id
-	 @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	private String username;
+public class Admin extends User implements Serializable {
+	private static final long serialVersionUID = 5926468583005150707L;
 
-	private String email;
-	private String mdp  ;
+	//private static final long serialVersionUID = 1L;
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	 public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
+
 	public Admin() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public Admin(int id, String username, String password, String adresse, String email, String tel, Role role) {
+		super(id, username, password, adresse, email, tel, role);
+		// TODO Auto-generated constructor stub
+	}
+
 	
-	
-	public Admin(int id, String username, String email, String mdp) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.email = email;
-		this.mdp = mdp;
-	}
-
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getMdp() {
-		return mdp;
-	}
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-	
+		
 	
 
 }

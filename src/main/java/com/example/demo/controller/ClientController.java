@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Client;
-import com.example.demo.entities.Services;
 import com.example.demo.repositories.ClientRepository;
 import com.example.demo.repositories.ServicesRepository;
 import com.example.demo.service.ClienttService;

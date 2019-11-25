@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.entities.Services;
@@ -26,12 +28,15 @@ public class ServicesServiceImpl  implements ServicesService{
 		servicesrepository.delete(services);
 	}
 
-
 	@Override
 	public void updateservices(Services services) {
 		// TODO Auto-generated method stub
 		servicesrepository.save(services);
+	}
 
+	@Override
+	public List<Services> getAll() {
+		return servicesrepository.findAll();
 	}
 	
 }

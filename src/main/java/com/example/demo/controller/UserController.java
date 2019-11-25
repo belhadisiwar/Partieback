@@ -1,21 +1,16 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-
-import org.springframework.security.authentication.ReactiveAuthenticationManagerAdapter;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import com.example.demo.config.BCryptManagerUtil;
 import com.example.demo.config.JwtTokenUtil;
+import com.example.demo.entities.Admin;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.JwtResponse;
 import com.example.demo.entities.Ouvrier;
@@ -47,7 +42,17 @@ public class UserController {
 		userservice.saveOuvrier(user);
 		
 	}
+	@RequestMapping(value="/addadmin",method=RequestMethod.POST)
+	public void saveUser(@RequestBody Admin user) {
+		user.setRole(Role.admin);
+		userservice.saveAdmin(user);
+	}
 	
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public User  loadByEmail( @RequestBody User user) {
+		User u = userservice.loadByEmail(user.getEmail());
+		return user;
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody User u) throws Exception {

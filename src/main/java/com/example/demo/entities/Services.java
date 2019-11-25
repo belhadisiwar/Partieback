@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +27,6 @@ public class Services implements Serializable {
 
 
 	@JoinColumn(name = "idclient") 
-	@JsonIgnore
 	@ManyToOne 
 	private Client client ;
 	

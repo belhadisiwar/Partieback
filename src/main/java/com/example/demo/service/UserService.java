@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 
+import com.example.demo.entities.Admin;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.Ouvrier;
 import com.example.demo.entities.User;
@@ -12,6 +13,5 @@ public interface UserService {
 	public User loadByUsername(String username);
 	public User loadByEmail(String email);	
 	
-	
-
+	public void saveAdmin(Admin user);
 }

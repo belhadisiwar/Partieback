@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import com.example.demo.entities.Services;
 import com.example.demo.repositories.ClientRepository;
 import com.example.demo.repositories.OuvrierRepository;
 import com.example.demo.repositories.ServicesRepository;
-import com.example.demo.service.ClientServiceImpl;
 import com.example.demo.service.ClienttService;
 import com.example.demo.service.ServicesService;
 
@@ -33,31 +33,17 @@ ServicesService servicesservice;
    	ClientRepository clientrepository;
    	@Autowired
    	ClienttService clientservice;
-	
-   // @RequestMapping(value="/addservice/{idouvrier}", method=RequestMethod.POST)
-    //public void  saveService(@RequestBody Services services,@PathVariable("idouvrier") Integer idouvrier) {
-    	//Ouvrier ouvrier = ouvrierrepository.getOne(idouvrier);
-		//services.setOuvrier(ouvrier);
-    	//servicesservice.addservice(services);
-    	//}
-    @RequestMapping(value="/reserveservice/{idclient}", method=RequestMethod.POST)
-    public void saveService(@RequestBody Services services) {
-    	servicesrepository.save(services);
-    	
-    }
-    
+	    
     @RequestMapping(value="/addservice/{idclient}", method=RequestMethod.POST)
     public void addservice(@RequestBody Services services, @PathVariable("idclient") Integer idclient) {
     	Client c = clientservice.getclientById(idclient);
     	services.setClient(c);
-    	servicesservice.addservice(services);
-    	
-    	//List<Services> serv = servicesrepository.findAll();
-    	//clientrepository.getOne(idclient);
-    	
-    	//List<Client> listc = clientrepository.findAll();
-    	//Services.setClient(listc);
-    	
+    	servicesservice.addservice(services);    	
+    }
+    
+    @RequestMapping(value="/allservice",method=RequestMethod.GET)
+    public List<Services> getAll(){
+    	return servicesservice.getAll();
     }
     
     @RequestMapping(value="/updateservices/{id}", method=RequestMethod.PUT)

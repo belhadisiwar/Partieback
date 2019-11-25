@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.config.BCryptManagerUtil;
+import com.example.demo.entities.Admin;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.Ouvrier;
 import com.example.demo.entities.User;
@@ -20,10 +21,7 @@ public class UserServiceImpl implements UserService{
 	UserRepository userrepository;
 	@PersistenceContext
 	EntityManager em;
-	
-	
-	private BCryptManagerUtil passwordEncoder;
-	
+		
 	@Override
 	public void saveUser(Client user) {
 		user.setPassword(BCryptManagerUtil.passwordEncoder().encode(user.getPassword()));
@@ -37,17 +35,20 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public User loadByUsername(String username)   {
-		
 		TypedQuery<User> query = (TypedQuery<User>) em.createQuery("SELECT u FROM User u WHERE u.username = :username " ,User.class);
 		User u = query.setParameter("username", username).getSingleResult();
-		
 			return  u;
 	}
 	@Override
-	public User loadByEmail(String email) {
-	
+	public User loadByEmail(String email) {	
 		TypedQuery<User> query = (TypedQuery<User>) em.createQuery("SELECT u FROM User u WHERE u.email = :email " ,User.class);
 	     User u = query.setParameter("email", email).getSingleResult(); 
 			return  u;
+	}
+	@Override
+	public void saveAdmin(Admin user) {
+		// TODO Auto-generated method stub
+		user.setPassword(BCryptManagerUtil.passwordEncoder().encode(user.getPassword()));
+		userrepository.save(user);
 	}
 	}
