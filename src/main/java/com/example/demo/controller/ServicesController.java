@@ -41,6 +41,12 @@ ServicesService servicesservice;
     	servicesservice.addservice(services);    	
     }
     
+    @RequestMapping(value="/add",method=RequestMethod.POST)
+	public void saveUser(@RequestBody Services service) {
+		servicesservice.addservice(service);
+		
+	}
+    
     @RequestMapping(value="/allservice",method=RequestMethod.GET)
     public List<Services> getAll(){
     	return servicesservice.getAll();
@@ -57,7 +63,8 @@ ServicesService servicesservice;
 	
     @RequestMapping(value="/deleteservices/{id}", method= RequestMethod.DELETE)
     public void deletes(@PathVariable("id") Integer id) {
-    	Services services = servicesrepository.getOne(id);
-    	servicesrepository.delete(services);
+    	Services services = servicesservice.getserviceById(id);
+    	servicesservice.deleteservices(services);
     }
+ 
 }

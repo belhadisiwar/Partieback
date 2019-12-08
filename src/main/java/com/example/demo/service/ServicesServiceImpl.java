@@ -23,8 +23,8 @@ public class ServicesServiceImpl  implements ServicesService{
 		servicesrepository.save(services);
 	}
 
-	public void deleteservices(Integer id) {
-		Services services =  servicesrepository.getOne(id);
+	public void deleteservices(Services services) {
+		
 		servicesrepository.delete(services);
 	}
 
@@ -37,6 +37,11 @@ public class ServicesServiceImpl  implements ServicesService{
 	@Override
 	public List<Services> getAll() {
 		return servicesrepository.findAll();
+	}
+
+	@Override
+	public Services getserviceById(Integer id) {
+		return  servicesrepository.getOne(id);
 	}
 	
 }

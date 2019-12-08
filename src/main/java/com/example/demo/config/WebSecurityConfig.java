@@ -42,7 +42,7 @@ protected void configure(HttpSecurity httpSecurity) throws Exception {
 httpSecurity.csrf().disable()
 // dont authenticate this particular request
 //.authorizeRequests().antMatchers("/user/add","/user/decrypt","/user/addouv", "/user/login","/service/updateservices/{id}","/service/deleteservices/{id}","/user/pwdCheck").permitAll().
-.authorizeRequests().antMatchers("/user/addadmin","/ouvrier/allclient","/client/allclient","/client/oneclient/{id}","/client/add","/ouvrier/allouvrier","/user/add","/user/addouv", "/user/login","/service/updateservices/{id}","/service/deleteservices/{id}", "/service/allservice","/ouvrier/deleteouvrier/{id}","/client/deleteclient/{id}","/service/addservice/{idclient}","/contact/add","/contact/allcontact").permitAll().
+.authorizeRequests().antMatchers("/ouvrier/login","/ouvrier/add/{idServices}","/service/add","/user/addadmin","/ouvrier/allclient","/client/allclient","/client/oneclient/{id}","/client/add","/ouvrier/allouvrier","/user/add","/user/addouv", "/user/login","/service/updateservices/{id}","/service/deleteservices/{id}", "/service/allservice","/ouvrier/deleteouvrier/{id}","/client/deleteclient/{id}","/service/addservice/{idclient}","/contact/add","/contact/allcontact").permitAll().
 // all other requests need to be authenticated
 anyRequest().authenticated().and().
 // make sure we use stateless session; session won't be used to

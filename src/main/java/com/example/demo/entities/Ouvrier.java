@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -17,15 +19,50 @@ public class Ouvrier extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
-		
-	@OneToMany(mappedBy="ouvriers", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<Comments> comments = new ArrayList<Comments>();
+		private Typedouvrier typedouvrier;
+		private boolean available ;
+	
+
+
+	@OneToOne( fetch = FetchType.EAGER)
+	private Services services;
 
 	
-	@OneToMany(mappedBy="ouvrier", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private List<Services> services = new ArrayList<Services>();
+
+
+	public Services getServices() {
+		return services;
+	}
+
+
+	public void setServices(Services services) {
+		this.services = services;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public Typedouvrier getTypedouvrier() {
+		return typedouvrier;
+	}
+
+
+	public void setTypedouvrier(Typedouvrier typedouvrier) {
+		this.typedouvrier = typedouvrier;
+	}
+
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 
 
 

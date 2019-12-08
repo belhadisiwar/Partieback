@@ -2,13 +2,19 @@ package com.example.demo.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,104 +29,70 @@ public class Services implements Serializable {
 	private String titre;
 	private String decription;
 	private Date date  ;
-
-
-
-	@JoinColumn(name = "idclient") 
-	@ManyToOne 
-	private Client client ;
 	
-	@JoinColumn(name = "idouvrier") 
-	@ManyToOne 
-	private Ouvrier ouvrier ;
 
-	
-	
-		public Client getClient() {
-		return client;
+
+	@OneToOne( fetch = FetchType.EAGER)
+	private Client client;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Ouvrier> ouvrier = new ArrayList<Ouvrier>();
+
+	public int getId() {
+		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getDecription() {
+		return decription;
+	}
+
+	public void setDecription(String decription) {
+		this.decription = decription;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	
+
+	public Client getClient() {
+		return client;
+	}
 
 	public void setClient(Client client) {
 		this.client = client;
 	}
 
-
-		public Ouvrier getOuvrier() {
+	public List<Ouvrier> getOuvrier() {
 		return ouvrier;
 	}
 
-
-	public void setOuvrier(Ouvrier ouvrier) {
+	public void setOuvrier(List<Ouvrier> ouvrier) {
 		this.ouvrier = ouvrier;
 	}
 
-
-		public Services() {
-		super();
-		// TODO Auto-generated constructor stub
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
 
 	
-
-
-
-
-		public Services(int id, String titre, String decription, Date date, Client client, Ouvrier ouvrier) {
-			super();
-			this.id = id;
-			this.titre = titre;
-			this.decription = decription;
-			this.date = date;
-			this.client = client;
-			this.ouvrier = ouvrier;
-		}
-
-
-		@Override
-		public String toString() {
-			return "Services [id=" + id + ", titre=" + titre + ", decription=" + decription + ", date=" + date
-					+ ", client=" + client + ", ouvrier=" + ouvrier + "]";
-		}
-
-
-		public int getId() {
-			return id;
-		}
-
-
-		public void setId(int id) {
-			this.id = id;
-		}
-
-
-		public String getTitre() {
-			return titre;
-		}
-
-
-		public void setTitre(String titre) {
-			this.titre = titre;
-		}
-
-
-		public String getDecription() {
-			return decription;
-		}
-
-
-		public void setDecription(String decription) {
-			this.decription = decription;
-		}
-
-
-		public Date getDate() {
-			return date;
-		}
-
-
-		public void setDate(Date date) {
-			this.date = date;
-		}
-	}
+	
+	
+}

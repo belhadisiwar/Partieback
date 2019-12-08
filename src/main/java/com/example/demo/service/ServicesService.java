@@ -7,6 +7,7 @@ public interface ServicesService {
 
 	public void addservice(Services services);
 	public void updateservices(Services services  );
-	public void deleteservices(Integer id);
+	public void deleteservices(Services services);
+	public Services getserviceById (Integer id);
 	public List<Services> getAll();
 }
